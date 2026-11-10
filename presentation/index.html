@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time News Sentiment Analysis</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #101827;
+            color: white;
+        }
+
+        .slide {
+            display: none;
+            min-height: 100vh;
+            padding: 55px 8%;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        h1 {
+            color: #42d6c5;
+            font-size: 42px;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            color: #42d6c5;
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        p, li {
+            font-size: 21px;
+            line-height: 1.7;
+            color: #e0e7ef;
+        }
+
+        ul {
+            margin-left: 30px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #42d6c5;
+            font-weight: bold;
+        }
+
+        .dashboard-image {
+            width: 100%;
+            max-height: 65vh;
+            object-fit: contain;
+            background: white;
+            border-radius: 12px;
+            padding: 8px;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        button {
+            background: #42d6c5;
+            color: #101827;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #ffffff;
+        }
+
+        #counter {
+            color: white;
+            font-size: 16px;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #b8c5d4;
+            margin-top: 12px;
+        }
+
+        @media print {
+            .slide {
+                display: flex !important;
+                min-height: 100vh;
+                page-break-after: always;
+            }
+
+            .navigation {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Slide 1: Title -->
+    <section class="slide active">
+        <h1>Real-Time News Sentiment Analysis</h1>
+        <p class="subtitle">
+            An AWS-Based Automated News Processing and Sentiment Analysis System
+        </p>
+        <p>Presented by: SWATHI M K</p>
+        <p>Guide: ANSEL JANSON</p>
+    </section>
+
+    <!-- Slide 2: Problem Statement -->
+    <section class="slide">
+        <h2>Problem Statement</h2>
+        <p>
+            Thousands of news articles are published every day.
+            Manually reading and understanding the sentiment of each
+            article is time-consuming.
+        </p>
+        <br>
+        <p class="highlight">Our solution:</p>
+        <p>
+            Automatically collect technology news, analyse its sentiment,
+            store the results and display them through an interactive dashboard.
+        </p>
+    </section>
+
+    <!-- Slide 3: Objectives -->
+    <section class="slide">
+        <h2>Project Objectives</h2>
+        <ul>
+            <li>Automatically collect technology news using GNews API.</li>
+            <li>Process and clean the collected articles.</li>
+            <li>Classify sentiment using VADER.</li>
+            <li>Store raw data in Amazon S3.</li>
+            <li>Store processed data in PostgreSQL on Amazon RDS.</li>
+            <li>Display results using a Streamlit dashboard.</li>
+        </ul>
+    </section>
+
+    <!-- Slide 4: Technologies -->
+    <section class="slide">
+        <h2>Technologies Used</h2>
+        <ul>
+            <li><span class="highlight">Python:</span> Data collection and processing.</li>
+            <li><span class="highlight">GNews API:</span> News collection.</li>
+            <li><span class="highlight">VADER:</span> Sentiment analysis.</li>
+            <li><span class="highlight">Amazon S3:</span> Raw JSON storage.</li>
+            <li><span class="highlight">Amazon RDS:</span> PostgreSQL database.</li>
+            <li><span class="highlight">AWS Lambda:</span> Automated execution.</li>
+            <li><span class="highlight">EventBridge:</span> Five-minute scheduling.</li>
+            <li><span class="highlight">Docker and ECR:</span> Containerisation and image storage.</li>
+            <li><span class="highlight">ECS Fargate:</span> Dashboard deployment.</li>
+            <li><span class="highlight">Streamlit:</span> Interactive dashboard.</li>
+        </ul>
+    </section>
+
+    <!-- Slide 5: Architecture -->
+   
+<!-- Slide 5: AWS System Architecture -->
+<section class="slide">
+    <h2>System Architecture</h2>
+
+    <div style="background:white; padding:20px; border-radius:12px; color:#101827;">
+
+        <div style="text-align:center; padding:12px; background:#e8f3ff; border-radius:8px;">
+            <strong>Amazon EventBridge Scheduler</strong>
+            <p style="color:#333; font-size:15px;">Triggers every 5 minutes</p>
+        </div>
+
+        <div style="text-align:center; font-size:25px;">↓</div>
+
+        <div style="text-align:center; padding:12px; background:#fff0d9; border-radius:8px;">
+            <strong>AWS Lambda (Docker Container)</strong>
+            <p style="color:#333; font-size:15px;">Fetches and processes news using Python and VADER</p>
+        </div>
+
+        <div style="text-align:center; font-size:25px;">↓</div>
+
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+            <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:#e5f5ff; border-radius:8px;">
+                <strong>GNews API</strong>
+                <p style="color:#333; font-size:14px;">Technology news source</p>
+            </div>
+
+            <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:#e6f7ed; border-radius:8px;">
+                <strong>Amazon S3</strong>
+                <p style="color:#333; font-size:14px;">Raw JSON storage</p>
+            </div>
+
+            <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:#fff0e5; border-radius:8px;">
+                <strong>Amazon RDS</strong>
+                <p style="color:#333; font-size:14px;">Processed PostgreSQL records</p>
+            </div>
+        </div>
+
+        <div style="text-align:center; font-size:25px;">↓</div>
+
+        <div style="text-align:center; padding:15px; background:#e9e5ff; border-radius:8px;">
+            <strong>Amazon ECS Fargate</strong>
+            <p style="color:#333; font-size:14px;">Runs the Streamlit dashboard container</p>
+            <p style="color:#333; font-size:14px;">Dashboard reads processed data from RDS</p>
+        </div>
+
+        <div style="text-align:center; padding:10px; margin-top:10px; background:#e8f3ff; border-radius:8px;">
+            <strong>Amazon ECR</strong>
+            <p style="color:#333; font-size:14px;">Stores Docker images for Lambda and Dashboard</p>
+        </div>
+
+    </div>
+
+    <p class="note">
+        Data storage and dashboard deployment are handled by separate AWS services.
+    </p>
+</section>
+
+    <!-- Slide 6: Workflow -->
+    <section class="slide">
+        <h2>Project Workflow</h2>
+        <ul>
+            <li>EventBridge triggers Lambda every five minutes.</li>
+            <li>Lambda fetches technology news from GNews.</li>
+            <li>Python processes the collected articles.</li>
+            <li>VADER calculates sentiment scores.</li>
+            <li>Raw responses are stored in S3.</li>
+            <li>Processed articles are inserted into PostgreSQL.</li>
+            <li>Streamlit reads the database and displays the results.</li>
+        </ul>
+    </section>
+
+    <!-- Slide 7: Sentiment Analysis -->
+    <section class="slide">
+        <h2>Sentiment Analysis</h2>
+        <p>VADER produces a compound sentiment score between -1 and +1.</p>
+        <br>
+        <ul>
+            <li><span class="highlight">Positive:</span> Compound score ≥ 0.05</li>
+            <li><span class="highlight">Neutral:</span> Compound score between -0.05 and 0.05</li>
+            <li><span class="highlight">Negative:</span> Compound score ≤ -0.05</li>
+        </ul>
+        <p class="note">
+            The neutral range includes the boundary values -0.05 and 0.05.
+        </p>
+    </section>
+
+    <!-- Slide 8: Actual Dashboard -->
+    <section class="slide">
+        <h2>Live Dashboard – Project Output</h2>
+
+        <img
+            src="dashboard.png"
+            alt="Actual Streamlit News Sentiment Dashboard"
+            class="dashboard-image"
+        >
+
+        <p class="note">
+            Actual dashboard output from the deployed project.
+        </p>
+        <a href="http://65.1.148.237:8501"
+   target="_blank"
+   rel="noopener"
+   style="
+       display: inline-block;
+       margin-top: 20px;
+       padding: 15px 25px;
+       background: #42d6c5;
+       color: #101827;
+       text-decoration: none;
+       border-radius: 8px;
+       font-weight: bold;
+       width: fit-content;
+   ">
+   Open Live Streamlit Dashboard
+</a>
+    </section>
+
+    <!-- Slide 9: Deployment -->
+    <section class="slide">
+        <h2>AWS Deployment</h2>
+        <ul>
+            <li>Lambda packaged as a Docker container.</li>
+            <li>Dashboard packaged as a Docker container.</li>
+            <li>Images stored in Amazon ECR.</li>
+            <li>Dashboard deployed using ECS Fargate.</li>
+            <li>PostgreSQL hosted on Amazon RDS.</li>
+        </ul>
+    </section>
+
+    <!-- Slide 10: Testing -->
+    <section class="slide">
+        <h2>Testing and Results</h2>
+        <ul>
+            <li>Verified news collection from GNews.</li>
+            <li>Verified sentiment calculation using VADER.</li>
+            <li>Verified raw JSON upload to S3.</li>
+            <li>Verified processed records in PostgreSQL.</li>
+            <li>Verified scheduled Lambda execution.</li>
+            <li>Observed dashboard article count update after scheduled execution.</li>
+        </ul>
+    </section>
+
+    <!-- Slide 11: Conclusion -->
+    <section class="slide">
+        <h2>Conclusion</h2>
+        <p>
+            This project demonstrates an automated cloud-based pipeline
+            for collecting, analysing, storing and visualising news sentiment.
+        </p>
+        <br>
+        <p class="highlight">
+            Thank You!
+        </p>
+    </section>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button onclick="previousSlide()">Previous</button>
+        <span id="counter">1 / 11</span>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        // Get all presentation slides
+        const slides = document.querySelectorAll(".slide");
+
+        // Track the currently displayed slide
+        let currentSlide = 0;
+
+        // Display a selected slide
+        function showSlide(index) {
+
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove("active");
+            });
+
+            // Show the selected slide
+            slides[index].classList.add("active");
+
+            // Update the slide counter
+            document.getElementById("counter").textContent =
+                (index + 1) + " / " + slides.length;
+        }
+
+        // Move to the next slide
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Move to the previous slide
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Allow keyboard navigation
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "ArrowRight") {
+                nextSlide();
+            }
+
+            if (event.key === "ArrowLeft") {
+                previousSlide();
+            }
+
+        });
+    </script>
+
+</body>
+</html>
