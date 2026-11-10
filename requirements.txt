@@ -1,6 +1,8 @@
-
 requests
 python-dotenv
 pandas
+numpy
 vaderSentiment
 streamlit
+psycopg2-binary==2.9.13
+boto3
