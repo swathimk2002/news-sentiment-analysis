@@ -5,7 +5,7 @@
 
 ## System Architecture
 
-![Project Architecture](images/architecture.jpg)
+![Project Architecture](images/architecture.png)
 
 ## Dashboard Preview
 
