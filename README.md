@@ -7,6 +7,16 @@
 
 ![Project Architecture](images/architecture.jpg)
 
+## Dashboard Preview
+
+### Dashboard – Overview
+
+![Dashboard Overview](images/dashboard1.png)
+
+### Dashboard – Sentiment Analysis
+
+![Dashboard Sentiment Analysis](images/dashboard2.png)
+
 ## 1. Project Overview
 
 Real-Time News Sentiment Analysis is an end-to-end cloud-based data engineering and sentiment analysis project. It automatically collects technology-related news articles, analyzes their sentiment using VADER, stores raw and processed data, and displays the results through an interactive Streamlit dashboard.
