@@ -179,64 +179,64 @@
         </ul>
     </section>
 
-    <!-- Slide 5: Architecture -->
-   
-<!-- Slide 5: AWS System Architecture -->
-<section class="slide">
-    <h2>System Architecture</h2>
+    <!-- Slide 5: AWS Architecture -->
+    <section class="slide">
+        <h2>System Architecture</h2>
 
-    <div style="background:white; padding:20px; border-radius:12px; color:#101827;">
+        <div style="background:white; padding:20px; border-radius:12px; color:#101827;">
 
-        <div style="text-align:center; padding:12px; background:#e8f3ff; border-radius:8px;">
-            <strong>Amazon EventBridge Scheduler</strong>
-            <p style="color:#333; font-size:15px;">Triggers every 5 minutes</p>
-        </div>
-
-        <div style="text-align:center; font-size:25px;">↓</div>
-
-        <div style="text-align:center; padding:12px; background:#fff0d9; border-radius:8px;">
-            <strong>AWS Lambda (Docker Container)</strong>
-            <p style="color:#333; font-size:15px;">Fetches and processes news using Python and VADER</p>
-        </div>
-
-        <div style="text-align:center; font-size:25px;">↓</div>
-
-        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-            <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:#e5f5ff; border-radius:8px;">
-                <strong>GNews API</strong>
-                <p style="color:#333; font-size:14px;">Technology news source</p>
+            <div style="text-align:center; padding:12px; background:#e8f3ff; border-radius:8px;">
+                <strong>Amazon EventBridge Scheduler</strong>
+                <p style="color:#333; font-size:15px;">Triggers every 5 minutes</p>
             </div>
 
-            <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:#e6f7ed; border-radius:8px;">
-                <strong>Amazon S3</strong>
-                <p style="color:#333; font-size:14px;">Raw JSON storage</p>
+            <div style="text-align:center; font-size:25px;">↓</div>
+
+            <div style="text-align:center; padding:12px; background:#fff0d9; border-radius:8px;">
+                <strong>AWS Lambda (Docker Container)</strong>
+                <p style="color:#333; font-size:15px;">Fetches and processes news using Python and VADER</p>
             </div>
 
-            <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:#fff0e5; border-radius:8px;">
-                <strong>Amazon RDS</strong>
-                <p style="color:#333; font-size:14px;">Processed PostgreSQL records</p>
+            <div style="text-align:center; font-size:25px;">↓</div>
+
+            <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+
+                <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:#e5f5ff; border-radius:8px;">
+                    <strong>GNews API</strong>
+                    <p style="color:#333; font-size:14px;">Technology news source</p>
+                </div>
+
+                <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:#e6f7ed; border-radius:8px;">
+                    <strong>Amazon S3</strong>
+                    <p style="color:#333; font-size:14px;">Raw JSON storage</p>
+                </div>
+
+                <div style="flex:1; min-width:180px; text-align:center; padding:18px; background:#fff0e5; border-radius:8px;">
+                    <strong>Amazon RDS</strong>
+                    <p style="color:#333; font-size:14px;">Processed PostgreSQL records</p>
+                </div>
+
             </div>
+
+            <div style="text-align:center; font-size:25px;">↓</div>
+
+            <div style="text-align:center; padding:15px; background:#e9e5ff; border-radius:8px;">
+                <strong>Amazon ECS Fargate</strong>
+                <p style="color:#333; font-size:14px;">Runs the Streamlit dashboard container</p>
+                <p style="color:#333; font-size:14px;">Dashboard reads processed data from RDS</p>
+            </div>
+
+            <div style="text-align:center; padding:10px; margin-top:10px; background:#e8f3ff; border-radius:8px;">
+                <strong>Amazon ECR</strong>
+                <p style="color:#333; font-size:14px;">Stores Docker images for Lambda and Dashboard</p>
+            </div>
+
         </div>
 
-        <div style="text-align:center; font-size:25px;">↓</div>
-
-        <div style="text-align:center; padding:15px; background:#e9e5ff; border-radius:8px;">
-            <strong>Amazon ECS Fargate</strong>
-            <p style="color:#333; font-size:14px;">Runs the Streamlit dashboard container</p>
-            <p style="color:#333; font-size:14px;">Dashboard reads processed data from RDS</p>
-        </div>
-
-        <div style="text-align:center; padding:10px; margin-top:10px; background:#e8f3ff; border-radius:8px;">
-            <strong>Amazon ECR</strong>
-            <p style="color:#333; font-size:14px;">Stores Docker images for Lambda and Dashboard</p>
-        </div>
-
-    </div>
-
-    <p class="note">
-        Data storage and dashboard deployment are handled by separate AWS services.
-    </p>
-</section>
+        <p class="note">
+            Data storage and dashboard deployment are handled by separate AWS services.
+        </p>
+    </section>
 
     <!-- Slide 6: Workflow -->
     <section class="slide">
@@ -280,22 +280,24 @@
         <p class="note">
             Actual dashboard output from the deployed project.
         </p>
-        <a href="http://65.1.148.237:8501"
-   target="_blank"
-   rel="noopener"
-   style="
-       display: inline-block;
-       margin-top: 20px;
-       padding: 15px 25px;
-       background: #42d6c5;
-       color: #101827;
-       text-decoration: none;
-       border-radius: 8px;
-       font-weight: bold;
-       width: fit-content;
-   ">
-   Open Live Streamlit Dashboard
-</a>
+
+        <a
+            href="http://43.205.144.26:8501"
+            target="_blank"
+            rel="noopener"
+            style="
+                display: inline-block;
+                margin-top: 20px;
+                padding: 15px 25px;
+                background: #42d6c5;
+                color: #101827;
+                text-decoration: none;
+                border-radius: 8px;
+                font-weight: bold;
+                width: fit-content;
+            ">
+            Open Live Streamlit Dashboard
+        </a>
     </section>
 
     <!-- Slide 9: Deployment -->
