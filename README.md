@@ -1,5 +1,12 @@
 # Real-Time News Sentiment Analysis on AWS
 
+
+
+
+## System Architecture
+
+![Project Architecture](images/architecture.jpg)
+
 ## 1. Project Overview
 
 Real-Time News Sentiment Analysis is an end-to-end cloud-based data engineering and sentiment analysis project. It automatically collects technology-related news articles, analyzes their sentiment using VADER, stores raw and processed data, and displays the results through an interactive Streamlit dashboard.
